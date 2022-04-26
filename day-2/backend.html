@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend</title>
+</head>
+<body>
+    <form id="form">
+<input id="name" type="text" placeholder="Enter your name">
+<input id="img" type="text" placeholder="Fill your image url">
+<input id="logo" type="text" placeholder="Fill your logo url">
+<input id="role" type="text" placeholder="Enter your position">
+<input type="submit">
+</form>
+</body>
+</html>
+<script>
+    document.querySelector("#form").addEventListener("submit",investfun)
+    var arrOfData= JSON.parse(localStorage.getItem("investor")) || []
+    function investfun(){
+        event.preventDefault()
+       var data ={
+           name:form.name.value,
+           img:form.img.value,
+           logo:form.logo.value,
+           role:form.role.value, 
+       }
+       arrOfData.push(data)
+       localStorage.setItem("investor",JSON.stringify(arrOfData))
+    
+    }
+      
+</script>

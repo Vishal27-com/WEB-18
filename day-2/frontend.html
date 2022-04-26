@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend</title>
+    <style>
+        #container{
+            width: 95%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: 450px;
+            gap:20px;
+        }
+        #container>div{
+            margin: auto;
+            height:100%;
+            text-align: center;
+            box-shadow: 0 6.4px 14.4px 0 rgb(0 0 0 / 13%), 0 1.2px 3.6px 0 rgb(0 0 0 / 11%);
+            border-radius: 10px;
+        }
+        #logo{
+            margin-top: -10px;
+          height: 60px;
+
+
+        }
+        #ima{
+            height: 300px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+    
+    </style>
+
+</head>
+<body>
+   
+</body>
+</html>
+<script>
+     var arrOfData= JSON.parse(localStorage.getItem("investor")) || []
+    var cont=document.createElement("div")
+    cont.setAttribute("id","container")
+    document.querySelector("body").append(cont)
+    arrOfData.forEach(function(el){
+       var card=document.createElement("div")
+       cont.append(card)
+       card.setAttribute("combinator","container>div")
+       var image1=document.createElement("img")
+       image1.setAttribute("src",el.img)
+       image1.setAttribute("id","ima")
+       var name=document.createElement("h3")
+       name.innerText=el.name
+       var position=document.createElement("p")
+       position.innerText=el.role
+       var image=document.createElement("img")
+       image.setAttribute("src",el.logo)
+       image.setAttribute("id","logo")
+       card.append(image1,name,position,image)
+    })
+</script>
+
+</script>
