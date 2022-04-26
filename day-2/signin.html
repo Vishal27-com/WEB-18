@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0px;
+            padding:0px;
+        }
+        img{ display: block;
+            margin:40px auto;
+        }
+        h2{
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form{
+            margin: auto;
+            box-shadow: 0 6.4px 14.4px 0 rgb(0 0 0 / 13%), 0 1.2px 3.6px 0 rgb(0 0 0 / 11%);
+            width:30%;
+            height:300px;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        #name,#email,#password{
+            margin:0px auto 20px auto;
+            display: block;
+            width: 80%;
+            padding: 15px;
+            border: 1px solid grey;
+            border-radius: 5px;
+        }
+        h5{
+            padding:0px 28px;
+            color: rgb(83, 74, 74);
+            font-family: sans-serif;
+            margin-bottom: 10px;
+        }
+        p{  
+            padding: 10px;
+            text-align: center;
+            color: rgb(83, 74, 74);
+            font-family: sans-serif;
+            font-size: 14px;
+        }
+        #password+input{
+         margin:0px auto 20px auto;
+            display: block;
+            width: 80%;
+            padding: 10px; 
+            color: rgb(83, 74, 74);
+            font-family: sans-serif;
+            border: 1px solid grey;
+            border-radius: 5px;
+        }
+        #password+input:hover{
+           background-color: rgb(60, 106, 255);
+        }
+        h4{
+         padding: 10px;
+            text-align: center;
+            color: rgb(83, 74, 74);
+            font-family: sans-serif;  
+        }
+    </style>
+</head>
+<body>
+    <img src="https://sso.masaischool.com/brand_dark.svg">
+
+  
+    <form id="form">
+     <h2>Sign In</h2>
+        <h5> Email</h5>
+        <input id="email" type="email" placeholder="Enter email">
+        <h5> Password</h5>
+        <input id="password" type="password" placeholder="Enter password">
+       <input type="submit" value="SIGN IN">
+     </form>
+</body>
+</html>
+<script>
+var user=JSON.parse(localStorage.getItem("signup")) || []
+document.querySelector("#form").addEventListener("submit",signinFun)
+function signinFun(){
+    var ema=document.querySelector("#email").value 
+    var pass=document.querySelector("#password").value 
+    user.forEach(function(el){
+        if(el.email==ema && el.password==pass){
+            alert("Login Successful")
+        }
+        else {
+            alert("Login Unsuccessful")
+        }
+    })
+}
+
+</script>
