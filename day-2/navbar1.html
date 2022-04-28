@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <style>
+        #container{
+            box-shadow: 7px 7px 15px #63c2f5,-4px -4px 13px #fff, inset 4px 4px 8px rgba(209, 217, 230, 0.2),  inset -8px -8px 8px rgba(255, 255, 255, 0.2);
+                border: 1px solid rgba(243, 221, 97, 0.3); 
+                background: #0b88f5;
+            height:80px;
+            display: flex;
+            justify-content: space-between;
+            border-radius: 5px;
+        }
+        .card1{
+            margin: auto;
+            width:60%;
+            height:80px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card2{
+            margin-right: 10px;
+            width:25%;
+            height:80px;
+            display: flex;
+            justify-content: space-between;
+        }
+      a{ 
+          text-decoration: none;
+          color: aliceblue;
+      }
+      #name{
+          color:rgb(10, 243, 49)
+      }
+    </style>
+</head>
+<body>
+   <div id="container">
+       <div class="card1">
+           <h1 id="name">Vishal E-Commerce</h1>
+        <h1><a href="signin.html">Men's Page</a></h1>
+        <h1><a href="signin.html">Women's Page</a></h1>
+       </div>
+      <div class="card2"><h2><a href="signup.html">Sign up</a></h2>
+        <h2><a href="signin.html">Sign in</a></h2></div> 
+     
+   </div> 
+</body>
+</html>
+<script>
+    var user_Data=JSON.parse(localStorage.getItem("signinData"))
+var user_name=document.querySelector(".card2")
+var prod=document.querySelector(".card1")
+if(user_Data!=null){
+user_name.innerHTML=`<h2><a>Welcome User</h2>
+        <h2><a href="Cart.html">Cart</a></h2>`
+ prod.innerHTML=`  <h1><a href="mens.html">Men's Page</a></h1>
+        <h1><a href="womens.html">Women's Page</a></h1>`    
+}
+</script>

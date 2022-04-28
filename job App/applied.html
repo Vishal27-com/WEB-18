@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Database</title>
+    <link rel="stylesheet" href="commonStyles.css" />
+  </head>
+
+  <body>
+   
+    <div id="links">
+      <div><a href="index.html">Home</a></div>
+      <div><a href="applied.html">Applied Jobs</a></div>
+      <div><a href="bookmark.html">Bookmarks</a></div>
+    </div>
+    <select id="namearr" onchange="handlerNameSort()">
+      <option value="">Sort By Name</option>
+      <option value="asc">Ascending</option>
+      <option value="des">Descending</option>
+    </select>
+    <select id="salaryarr" onchange="handlersalarySort()">
+      <option value="">Sort By Salary</option>
+      <option value="lth">LtH</option>
+      <option value="htl">HtL</option>
+    </select>
+    <select id="job" onchange="handlerJobFilter()">
+      <option value="">Filter By</option>
+      <option value="FSD">FSD</option>
+      <option value="Backend">Backend</option>
+      <option value="Frontend">Frontend</option>
+    </select>
+
+    <main>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Job applied</th>
+            <th>Salary expected</th>
+            <th>Add to bookmark</th>
+          </tr>
+        </thead>
+        <tbody id="body">
+          <!-- Append your output to tbody -->
+        </tbody>
+      </table>
+    </main>
+  </body>
+  <script>
+    //you need to code here
+    var arr=JSON.parse(localStorage.getItem("contactList")) || []
+    var bookmarkArr=JSON.parse(localStorage.getItem("bookmarks")) || []
+    display(arr)
+    function handlerNameSort(){
+  var namarr=document.querySelector("#namearr").value 
+
+  if((namarr)=="asc"){
+arr.sort(function(a,b){
+  if(a.name>b.name){
+    return 1
+  }
+  if(a.name<b.name){
+    return -1
+  }
+  return 0
+
+})
+display(arr)
+}
+
+else if((namarr)=="des"){
+  arr.sort(function(a,b){
+  if(a.name>b.name){
+    return -1
+  }
+  if(a.name<b.name){
+    return 1
+  }
+  return 0
+
+}) 
+display(arr)
+}
+
+}
+
+function handlersalarySort(){
+  var salary=document.querySelector("#salaryarr").value 
+
+  if((salary)=="lth"){
+arr.sort(function(a,b){
+ return a.salary-b.salary
+})
+display(arr)
+}
+
+else if((salary)=="htl"){
+  arr.sort(function(a,b){
+ return b.salary-a.salary
+})
+display(arr)
+}
+}
+function handlerJobFilter(){
+  var select=document.querySelector("#job").value 
+  var filtered=arr.filter(function(el){
+    return el.role==select
+  })
+  display(filtered)
+}
+
+ function display(arr) { 
+   document.querySelector("tbody").innerHTML=""
+    arr.forEach(function(el){
+  var row=document.createElement("tr")
+  document.querySelector("#body").append(row)
+  var col1=document.createElement("td")
+  col1.innerText=el.name
+  var col2=document.createElement("td")
+  col2.innerText=el.email
+  var col3=document.createElement("td")
+  col3.innerText=el.role
+  var col4=document.createElement("td")
+  col4.innerText=el.salary
+  var col5=document.createElement("td")
+  col5.innerText="Bookmarks"
+  col5.style.color="blue"
+  col5.style.cursor="Pointer"
+  col5.addEventListener("click",function(){
+   bookmark(el)
+  })
+  row.append(col1,col2,col3,col4,col5)
+
+    })
+  }
+function bookmark(el){
+  bookmarkArr.push(el)
+  localStorage.setItem("bookmarks",JSON.stringify(bookmarkArr))
+}
+  </script>
+</html>

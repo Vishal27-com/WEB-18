@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Signup</title>
    <style>
        *{
            margin:0px;
            padding:0px;
        }
-       img{ display: block;
+       h1{ text-align: center;
            margin:40px auto;
        }
        h2{
@@ -46,7 +46,7 @@
            font-family: sans-serif;
            font-size: 14px;
        }
-       a>input{
+       p+input{
         margin:0px auto 20px auto;
            display: block;
            width: 80%;
@@ -56,8 +56,8 @@
            border: 1px solid grey;
            border-radius: 5px;
        }
-       a>input:hover{
-          background-color: rgb(60, 106, 255);
+       p+input:hover{
+          background-color: rgb(160, 182, 255);
        }
        a{
            text-decoration: none;
@@ -71,7 +71,7 @@
    </style>
 </head>
 <body>
-   <img src="https://sso.masaischool.com/brand_dark.svg">
+  <h1>Vishal E-Commerce</h1>
 
   
    <form id="form">
@@ -100,5 +100,6 @@ function signupFun(){
  }
  user.push(data)
  localStorage.setItem("signup",JSON.stringify(user))
+ window.location.href="signin.html"
 }
 </script>

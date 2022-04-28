@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: 400px;
+            gap: 10px;
+        
+        }
+        #card{
+            font-size: 14px;
+            font-family: sans-serif;
+            box-shadow: 0 3.2px 7.2px 0 rgb(0 0 0 / 13%), 0 0.6px 1.8px 0 rgb(0 0 0 / 11%);
+            border-radius: 10px;
+            padding-left: 10px;
+          }
+        p{
+            text-align: right;
+            font-size: 18px;
+            font-family: sans-serif;
+            
+        }
+        #head{
+            box-shadow:  inset 4px 4px 8px rgba(209, 217, 230, 0.2),  inset -8px -8px 8px rgba(255, 255, 255, 0.2);
+                border: 1px solid rgba(243, 221, 97, 0.3); 
+                background: #77fdaf;
+            position: fixed;
+                top:120px; 
+                width:15%;
+                right:0px;
+                border-radius: 10px;
+        }
+        h1{
+            margin-top: 0px;
+            text-align: center;
+                padding:20px;
+                position: sticky;
+                top:20px; 
+               
+        }
+        #card2{
+            box-shadow: -4px -4px 13px #fff, inset 4px 4px 8px rgba(209, 217, 230, 0.2),  inset -8px -8px 8px rgba(255, 255, 255, 0.2);
+                border: 1px solid rgba(243, 221, 97, 0.3); 
+                background: #77fdaf; 
+                position: sticky;
+                top:20px;   
+                border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="card2"><h1>CART PAGE</h1>
+        <div id="head"><p id="qty">Total Quantity</p>
+        <p id="amt">Total Amount</p>
+
+        <input id="promo" type="text" placeholder="Apply Promo Code"> 
+      <input id="submit" type="submit">
+    </div></div>
+    
+    <div id="container">
+    </div>
+</body>
+</html>
+<script>
+var arr=JSON.parse(localStorage.getItem("cartstore")) || []
+var qty=document.getElementById("qty")
+qty.innerText="Total Quantity-"+arr.length
+var amt=document.getElementById("amt")
+var sum=arr.reduce(function(acc,el){
+ return  acc + Number(el.price)
+      },0)
+amt.innerText="Total Amount-"+sum 
+var promo=document.getElementById("promo").value
+document.querySelector("#submit").addEventListener("click",promoFun)
+
+function promoFun(){
+    // event.preventDefault()
+    if(promo=="masai30"){
+        amt.innerText="Total Amount-"+(sum*30)/100  
+    }
+}
+arr.forEach(function(el,ind){
+      var card=document.createElement("div")
+      card.setAttribute("id","card")
+      document.querySelector("#container").append(card)
+      var image=document.createElement("img")
+      image.setAttribute("src",el.image)
+      var nam=document.createElement("p")
+      nam.innerText=el.name
+      var pri=document.createElement("p")
+      pri.innerText=el.price
+      var button=document.createElement("button")
+      button.innerText="Remove from cart"
+      button.addEventListener("click",function(){
+        cartdel(el,ind)
+      })
+     
+      card.append(image,nam,pri,button)
+
+     
+  })
+  function cartdel(el,ind){
+      arr.splice(ind,1)
+      localStorage.setItem("cartstore",JSON.stringify(arr))
+      window.location.reload()
+  }
+ 
+</script>

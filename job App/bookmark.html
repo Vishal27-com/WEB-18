@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admitted</title>
+    <link rel="stylesheet" href="commonStyles.css" />
+  </head>
+
+  <body>
+    <div id="links">
+      <div><a href="index.html">Home</a></div>
+      <div><a href="applied.html">Applied Jobs</a></div>
+      <div><a href="bookmark.html">Bookmarks</a></div>
+    </div>
+    <main>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Job Applied</th>
+            <th>Salary</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody id="body"></tbody>
+      </table>
+    </main>
+  </body>
+  <script>
+    //you need to code here
+  var bookmarkArr=JSON.parse(localStorage.getItem("bookmarks"))
+  bookmarkArr.forEach(function(el,index){
+  var row=document.createElement("tr")
+  document.querySelector("#body").append(row)
+  var col1=document.createElement("td")
+  col1.innerText=el.name
+  var col2=document.createElement("td")
+  col2.innerText=el.email
+  var col3=document.createElement("td")
+  col3.innerText=el.role
+  var col4=document.createElement("td")
+  col4.innerText=el.salary
+  var col5=document.createElement("td")
+  col5.innerText="Delete"
+  col5.style.color="red"
+  col5.addEventListener("click",function () {
+   del(el,index)
+  })
+  row.append(col1,col2,col3,col4,col5)
+
+    })
+function del(el,index){
+  bookmarkArr.splice(index,1)
+  localStorage.setItem("bookmarks",JSON.stringify(bookmarkArr))
+  window.location.reload()
+}
+  </script>
+</html>

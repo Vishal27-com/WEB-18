@@ -9,13 +9,16 @@
         #container{
             display: grid;
             grid-template-columns: repeat(4,1fr);
-            grid-template-rows: 400px;
+            grid-template-rows: 370px;
             gap: 10px;
         }
         #card{
             font-size: 14px;
             font-family: sans-serif;
-        }
+            box-shadow: 0 3.2px 7.2px 0 rgb(0 0 0 / 13%), 0 0.6px 1.8px 0 rgb(0 0 0 / 11%);
+            border-radius: 10px;
+            padding-left: 10px;
+          }
     </style>
 </head>
 <body>
@@ -30,7 +33,7 @@
       image_url:
         "https://content.shop4reebok.com/static/Product-EX4296/reebok_EX4296_1.jpg.plp",
       name: "MEN'S REEBOK RUNNING ROADMAP SHOES",
-      price: "$1170",
+      price: "1170",
       strikedoffprice: "$2599",
     },
     {
@@ -289,7 +292,24 @@
       nam.innerText=el.name
       var pri=document.createElement("p")
       pri.innerText=el.price
-      card.append(image,nam,pri)
-
+      var button=document.createElement("button")
+      button.innerText="Add to cart"
+      button.addEventListener("click",function(){
+        cartFun(el) 
+      })
+      card.append(image,nam,pri,button)
+     
   })
+  
+var arr=JSON.parse(localStorage.getItem("cartstore")) || []
+function cartFun(el){
+var cartobj={
+  image:el.image_url,
+  name:el.name,
+  price:el.price
+} 
+arr.push(cartobj)
+localStorage.setItem("cartstore",JSON.stringify(arr))
+window.location.href="Cart.html"
+}
 </script>
